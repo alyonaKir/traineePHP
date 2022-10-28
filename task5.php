@@ -1,18 +1,16 @@
 <?php
-    function outputNum(int $A, int $B): string{
-        static $rez="";
+    function outputNum(int $A, int $B){
         if($A==$B) {
-            $rez.=$B;
+            echo $B."</br>";
         }
         else if ($A<$B){
-            $rez.=$A++.", ";
+            echo $A++.", ";
             outputNum($A++, $B);
         }
         else{
-            $rez.=$A--.", ";
+            echo $A--.", ";
             outputNum($A--, $B);
         }
-        return $rez;
     }
 ?>
 
