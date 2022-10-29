@@ -1,5 +1,5 @@
 <?php
-//добавить умножение матриц и сделать матрицу дробной
+
 class Matrix
 {
     public $matr;
@@ -13,10 +13,11 @@ class Matrix
         $this->colums = $colums;
     }
 
-    public function addWithAnotherMatrix($inMatr){
+    public function addWithAnotherMatrix($inMatr)
+    {
         for ($i = 0; $i < $this->rows; $i++) {
             for ($j = 0; $j < $this->colums; $j++) {
-                $this->matr[$i][$j] +=$inMatr[$i][$j];
+                $this->matr[$i][$j] += $inMatr[$i][$j];
             }
         }
     }
@@ -40,21 +41,22 @@ class Matrix
         }
     }
 
-    public function multyMatrix()
+    public function multyMatrix(Matrix $inMatr)
     {
-
+        if ($this->colums != $inMatr->rows) {
+            throw new Exception('Incompatible matrixes');
+        }
+        $m3 = array();
+        for ($i = 0; $i < $this->rows; $i++) {
+            for ($j = 0; $j < $inMatr->colums; $j++) {
+                $m3[$i][$j] = 0;
+                for ($k = 0; $k < $inMatr->rows; $k++) {
+                    $m3[$i][$j] += $this->matr[$i][$k] * $inMatr->matr[$k][$j];
+                }
+            }
+        }
+        return $m3;
     }
 }
 
-for ($i = 0; $i < 4; $i++) {
-    for ($j = 0; $j < 4; $j++) {
-        $a[$i][$j] = rand(1, 15) * 1.05;
-    }
-}
-$m = new Matrix($a, 4, 4);
-$m->printMatr();
-echo "</br>";
-$m->multyByNum(2);
-echo "</br>";
-$m->printMatr();
 ?>
