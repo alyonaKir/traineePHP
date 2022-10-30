@@ -73,10 +73,4 @@ class MyCalculator
     }
 }
 
-$mycalc = new MyCalculator(12, 6);
-echo $mycalc->add() . "</br>";// Displays 18
-echo $mycalc->multiply() . "</br>"; // Displays 72
-// Calculation by chain
-echo $mycalc->add()->divideBy(9); // Displays 2 ( (12+6)/9=2 )
-
 ?>
