@@ -18,11 +18,9 @@ class Point
 
 class Way
 {
-    public Point $points;
+    public array $points;
 
-    public function __construct(Point $p){
-        echo "we here".$p;
-        echo $this->points;
+    public function add(Point $p){
         $this->points[] = $p;
     }
 
@@ -114,7 +112,9 @@ class Finder
 
     public function start(int $x1, int $y1, int $x2, int $y2){
         $A = new Point($x1, $y1);
-        $ways = $this->calculate(new Way($A), $A, new Point($x2, $y2));
+        $tempWay = new Way();
+        $tempWay->add($A);
+        $ways = $this->calculate($tempWay, $A, new Point($x2, $y2));
         if($ways == null){
             echo "</br>no way.";
         }
