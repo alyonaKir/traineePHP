@@ -64,9 +64,9 @@ class Finder
         for ($i = 0; $i < $this->n; $i++) {
             for ($j = 0; $j < $this->n; $j++) {
                 $this->field[$i][$j] = rand(0, 1);
-                //echo $this->field[$i][$j] . " ";
+                echo $this->field[$i][$j] . " ";
             }
-            //echo "</br>";
+            echo "</br>";
         }
 
     }
@@ -75,16 +75,16 @@ class Finder
     {
         $result = array();
         $points = array();
-        if ($A->x > 0 && $this->field[$A->x - 1][$A->y] == 1) {
+        if ($A->x > 0 && $this->field[$A->x - 1][$A->y] == 0) {
             $points[] = new Point($A->x - 1, $A->y);
         } //Left
-        if ($A->x < $this->n - 1 && $this->field[$A->x + 1][$A->y] == 1) {
+        if ($A->x < $this->n - 1 && $this->field[$A->x + 1][$A->y] == 0) {
             $points[] = new Point($A->x + 1, $A->y);
         } //Right
-        if ($A->y > 0 && $this->field[$A->x][$A->y - 1] == 1) {
+        if ($A->y > 0 && $this->field[$A->x][$A->y - 1] == 0) {
             $points[] = new Point($A->x, $A->y - 1);
         } //Down
-        if ($A->x < $this->n - 1 && $this->field[$A->x][$A->y + 1] == 1) {
+        if ($A->x < $this->n - 1 && $this->field[$A->x][$A->y + 1] == 0) {
             $points[] = new Point($A->x, $A->y + 1);
         } //Up
 
@@ -135,10 +135,10 @@ class Finder
         $ways = $this->calculate($tempWay, $A, new Point($x2, $y2));
         if ($ways == null) {
             $this->shortestWay = "No way";
-            //echo "</br>no way.";
+            echo "</br>no way.";
         } else {
             $this->shortestWay = $this->getShortWay($ways);
-            //echo $this->getShortWay($ways);
+            echo $this->getShortWay($ways);
         }
     }
 }
@@ -147,7 +147,7 @@ $s = file_get_contents('store');
 $f = unserialize($s);
 if (!is_array($f)) {
     $f = new Finder(10);
-    $f->start(0, 0, 1, 1);
+    $f->start(0, 0, 1, 3);
 }
 $s = serialize($f);
 file_put_contents('store', $s);
